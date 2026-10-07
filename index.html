@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="0; url=portfolio.html" />
+    <script>window.location.replace('portfolio.html');</script>
+    <title>Discovery Management | Kyndryl Bridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .drawer-provider-label { margin: 6px 0 0; color: #30383c; font-size: 11px; font-weight: 600; }
+      .drawer-provider-label span, .drawer-connection span { margin-right: 5px; color: #6a7378; font-weight: 400; }
+      .drawer-filter-bar { justify-content: flex-start; }
+      .drawer-filter[data-multiselect="registration"] { order: -1; }
+      .drawer-summary { display: flex; align-items: center; justify-content: space-between; margin: -2px 0 12px; }
+      .drawer-summary .drawer-provider-label, .drawer-summary .selected-count { margin: 0; }
+      .drawer-context { display: flex; align-items: center; gap: 18px; }
+      .drawer-context .drawer-provider-label, .drawer-connection { margin: 0; font-weight: 600; }
+      .drawer-connection.is-hidden { display: none; }
+      .drawer-row-checkbox:disabled { background: #eef1f2; border-color: #b8c1c5; cursor: not-allowed; opacity: .55; }
+      .drawer-table-row { grid-template-columns: 40px 44px minmax(0, 190px) 235px 1fr; }
+      .drawer-table-header span:nth-child(4) { white-space: nowrap; }
+      .drawer-filter.is-hidden { display: none; }
+      .refresh-indicator { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; margin-right: 5px; border-radius: 50%; font-size: 12px; font-weight: 700; line-height: 1; vertical-align: -2px; cursor: help; }
+      .refresh-indicator.on-demand, .refresh-indicator.scheduled { color: #4d5a5f; background: #eef1f2; }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">kyndryl</span><span class="brand-sub">bridge</span><span class="product">Platform Services</span></div>
+      <div class="top-actions"><span>ACME⌄</span><span class="top-icon">◔</span><span class="top-icon">◌</span><span class="avatar">A</span></div>
+    </header>
+    <main class="page-shell">
+      <div class="breadcrumbs"><span>Home</span><b>›</b><span>Discovery Management</span></div>
+      <div class="title-row"><div><h1>Discovery Management</h1></div></div>
+      <nav class="tabs"><button class="active" data-tab="asset">Asset Discovery</button><button data-tab="registrations">Registration Settings</button><button data-tab="developer">Developer Console</button></nav>
+
+      <section class="registration-view" id="registration-view" hidden>
+        <aside class="registration-nav"><button class="selected">Registrations</button><button>Discovery Sync</button><button>Templates</button></aside>
+        <div class="registration-content">
+          <div class="registration-heading"><h2>Registrations</h2></div>
+          <div class="registration-toolbar"><button class="filter-button" type="button">⌖&nbsp; Filter</button><span class="ondemand-wrapper" title="Select one or more Registration IDs for which you want to run On-Demand Discovery"><button class="secondary-button" type="button" disabled>On-Demand Discovery</button></span><button class="create-registration" type="button">Create Registration</button><span class="filter-chip">Type: ASSET <b>×</b></span></div>
+          <div class="registration-table" role="table" aria-label="Registrations">
+            <div class="registration-header" role="row"><span><input class="registration-checkbox select-all" type="checkbox" aria-label="Select all registrations" title="All 29 items across all the pages will get selected"></span><span>Registration Id</span><span>Consumer ↑</span><span>Last Run ↑</span><span>Status</span><span>Name</span><span>Auto Discovery</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 67171bec3b8c75819eb821e9"></span><a href="#">67171bec3b8c75819eb821e9</a><span>cd-cloud</span><span>8/28/26, 11:29 AM · 0 min</span><em class="status success">Completed</em><span>democloud-asset-autoregistration</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 68d7d227aeeab5c53c78303f"></span><a href="#">68d7d227aeeab5c53c78303f</a><span>cd-cloud</span><span>8/28/26, 11:34 AM · 0 min</span><em class="status warning">Completed with errors</em><span>gcp-asset-bridge_inventory_autoregistration</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 670015e23de1191d949fa0d3"></span><a href="#">670015e23de1191d949fa0d3</a><span>ccm</span><span>8/28/26, 11:34 AM · 0 min</span><em class="status warning">Completed with errors</em><span>gcp-asset-ccm-kubernetes</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 670013f237ab4b953e314618"></span><a href="#">670013f237ab4b953e314618</a><span>cd-cloud</span><span>8/28/26, 11:34 AM · 0 min</span><em class="status warning">Completed with errors</em><span>gcp-asset-autoregistration</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 6700032437ab4b953e3145ac"></span><a href="#">6700032437ab4b953e3145ac</a><span>ccm</span><span>8/28/26, 11:43 AM · 1 min</span><em class="status warning">Completed with errors</em><span>azure-asset-ccm-kubernetes</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 670003213de1191d949fa046"></span><a href="#">670003213de1191d949fa046</a><span>ccm</span><span>8/28/26, 11:40 AM · 10 min</span><em class="status warning">Completed with errors</em><span>aws-asset-ccm-kubernetes</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 68d7d2464f2abbbd2fbacd910"></span><a href="#">68d7d2464f2abbbd2fbacd910</a><span>cd-cloud</span><span>8/28/26, 11:43 AM · 1 min</span><em class="status warning">Completed with errors</em><span>azure-asset-bridge_inventory_autoregistration</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+            <div class="registration-row"><span><input class="registration-checkbox row-checkbox" type="checkbox" aria-label="Select registration 670001693de1191d949fa024"></span><a href="#">670001693de1191d949fa024</a><span>cd-cloud</span><span>8/28/26, 11:43 AM · 1 min</span><em class="status warning">Completed with errors</em><span>azure-asset-autoregistration</span><span><button class="toggle-switch active" type="button" aria-label="Stop auto discovery"></button> Stop</span></div>
+          </div>
+          <div class="registration-pagination"><span>Showing 1 – 29 of 29 items</span><span>Items per page: <select><option>30</option></select></span><span>‹　1　⌄　of 1 pages　›</span></div>
+        </div>
+      </section>
+
+      <section class="chart-grid asset-view" aria-label="Discovery summary">
+        <article class="chart-card"><div class="chart-heading"><div><p>Discovery Errors</p><strong>252 / 2,562</strong></div><span>↗　⋯</span></div><div class="bar-chart errors"><i></i><i></i><i></i></div><div class="axis"><span>0</span><span>1,000</span><span>1,500</span><span>2,000</span><span>2,562</span></div><div class="legend"><span class="aws-dot"></span>AWS <span class="azure-dot"></span>GCP <span class="orange-dot"></span>Azure <span class="pink-dot"></span>Unclassified</div></article>
+        <article class="chart-card"><div class="chart-heading"><div><p>Resources Checked During Discovery</p><strong>65 / 8,580</strong></div><span>↗　⋯</span></div><div class="bar-chart resources"><i></i><i></i><i></i><i></i></div><div class="axis"><span>0</span><span>1,920</span><span>3,840</span><span>5,760</span><span>8,580</span></div><div class="legend"><span class="aws-dot"></span>AWS <span class="azure-dot"></span>Azure <span class="orange-dot"></span>GCP <span class="pink-dot"></span>Unclassified</div></article>
+      </section>
+
+      <section class="table-area asset-view">
+        <div class="table-toolbar"><label>Status <select><option>All</option><option>Completed</option><option>Completed with errors</option><option>In progress</option></select></label><label>Provider <select><option>All</option><option>AWS</option><option>Azure</option><option>DemoCloud</option><option>GCP</option></select></label></div>
+        <div class="data-table" role="table" aria-label="Discovery providers">
+          <div class="table-header" role="row"><span>Provider</span><span>Last Run</span><span>Next run</span><span>Status</span><span>Errors Found</span><span>Resource Checked</span><span aria-label="Actions"></span></div>
+          <div class="provider-group expanded">
+            <div class="data-row parent-row" role="row"><span class="provider-cell"><button class="chevron" aria-label="Collapse AWS">⌃</button>AWS</span><span><span class="refresh-indicator on-demand" title="On-Demand Discovery" aria-label="On-Demand Discovery">↻</span>8/28/26, 11:40 AM · 10 min</span><span>NA</span><span><em class="status warning">Completed with errors</em></span><span>224</span><span>2762</span><span class="row-action"><button class="overflow" aria-label="AWS actions">⋮</button></span></div>
+            <div class="child-table">
+              <div class="child-header"><span>Connection Name</span><span>Last Run</span><span>Status</span><span>Discovery Summary</span><span></span></div>
+              <div class="data-row child-row" data-scheduled-discovery-running="true"><span><a href="#">AWS-Cloud-Inventory</a></span><span><span class="refresh-indicator scheduled" title="Scheduled discovery" aria-label="Scheduled discovery">◷</span>8/28/26, 11:27 AM · 10 min<br><small>Next run: 8/28/26, 12:27 PM</small></span><span><em class="status running">In progress</em></span><span>18 errors found<br>602 resources extracted</span><span class="row-action"><button class="overflow" aria-label="AWS Cloud Inventory actions">⋮</button></span></div>
+              <div class="data-row child-row"><span><a href="#">AWS_Demo_Asset</a></span><span><span class="refresh-indicator on-demand" title="On-Demand Discovery" aria-label="On-Demand Discovery">↻</span>8/28/26, 11:25 AM · 0 min<br><small>Next run: 8/28/26, 12:25 PM</small></span><span><em class="status warning">Completed with errors</em></span><span>17 errors found<br>336 resources extracted</span><span class="row-action"><button class="overflow" aria-label="AWS Demo Asset actions">⋮</button></span></div>
+              <div class="data-row child-row"><span><a href="#">Petstore_CCM_AWS</a></span><span><span class="refresh-indicator scheduled" title="Scheduled discovery" aria-label="Scheduled discovery">◷</span>8/28/26, 11:02 AM · 0 min<br><small>Next run: 8/28/26, 12:02 PM</small></span><span><em class="status warning">Completed with errors</em></span><span>17 errors found<br>138 resources extracted</span><span class="row-action"><button class="overflow" aria-label="Petstore actions">⋮</button></span></div>
+              <div class="data-row child-row"><span><a href="#">AWS_CKA_bridgediscovery</a></span><span>8/28/26, 11:07 AM · 0 min<br><small>Next run: 8/28/26, 12:02 PM</small></span><span><em class="status warning">Completed with errors</em></span><span>137 errors found<br>17 resources extracted</span><span class="row-action"><button class="overflow" aria-label="AWS CKA actions">⋮</button></span></div>
+              <div class="data-row child-row"><span><a href="#">AWS_multivk_dfd</a></span><span><span class="refresh-indicator on-demand" title="On-Demand Discovery" aria-label="On-Demand Discovery">↻</span>8/28/26, 11:40 AM · 7 min<br><small>Next run: 8/28/26, 12:40 PM</small></span><span><em class="status warning">Completed with errors</em></span><span>17 errors found<br>694 resources extracted</span><span class="row-action"><button class="overflow" aria-label="AWS multivk actions">⋮</button></span></div>
+            </div>
+          </div>
+          <div class="data-row parent-row collapsed-row"><span class="provider-cell"><button class="chevron" aria-label="Expand Azure">⌄</button>Azure</span><span><span class="refresh-indicator scheduled" title="Scheduled discovery" aria-label="Scheduled discovery">◷</span>8/28/26, 11:43 AM · 1 min</span><span>NA</span><span><em class="status warning">Completed with errors</em></span><span>1</span><span>3582</span><span class="row-action"><button class="overflow" aria-label="Azure actions">⋮</button></span></div>
+          <div class="data-row parent-row collapsed-row"><span class="provider-cell"><button class="chevron" aria-label="Expand DemoCloud">⌄</button>DemoCloud</span><span>8/28/26, 11:29 AM · 0 min</span><span>NA</span><span><em class="status success">Completed</em></span><span>0</span><span>170</span><span class="row-action"><button class="overflow" aria-label="DemoCloud actions">⋮</button></span></div>
+          <div class="data-row parent-row collapsed-row"><span class="provider-cell"><button class="chevron" aria-label="Expand GCP">⌄</button>GCP</span><span><span class="refresh-indicator on-demand" title="On-Demand Discovery" aria-label="On-Demand Discovery">↻</span>8/28/26, 11:34 AM · 0 min</span><span>NA</span><span><em class="status warning">Completed with errors</em></span><span>2297</span><span>121</span><span class="row-action"><button class="overflow" aria-label="GCP actions">⋮</button></span></div>
+        </div>
+        <div class="pagination"><span>Showing 1 – 5 of 5 items　 Items per page:</span><select><option>5</option></select><span>‹　1　›</span></div>
+      </section>
+    </main>
+    <aside class="feedback">Feedback</aside>
+    <footer><span>Privacy　 Terms　 Security　 FAQ　 Create Support Ticket　 Cookie Preferences</span><strong><b>kyndryl</b> bridge</strong></footer>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <aside class="discovery-drawer" id="discovery-drawer" aria-labelledby="drawer-title" hidden>
+      <div class="drawer-content">
+        <button class="drawer-close" type="button" aria-label="Close On-Demand Discovery">×</button>
+        <h2 id="drawer-title">On-Demand Discovery</h2>
+        <p class="drawer-description">Unsupported resource categories will be skipped during discovery.</p>
+        <div class="drawer-filter-bar">
+          <div class="drawer-filter shidoka-multiselect" data-multiselect="connection-name" aria-label="Connection Name filter">
+            <span class="drawer-filter-label">Connection Name</span>
+            <button type="button" class="shidoka-multiselect__trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="shidoka-multiselect__value">All</span>
+              <span class="shidoka-multiselect__caret">▾</span>
+            </button>
+            <div class="shidoka-multiselect__menu" role="listbox" aria-multiselectable="true" hidden>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" data-shidoka-all checked />
+                <span>All</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="AWS-Cloud-Inventory" />
+                <span>AWS-Cloud-Inventory</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="AWS_Demo_Asset" />
+                <span>AWS_Demo_Asset</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="Petstore_CCM_AWS" />
+                <span>Petstore_CCM_AWS</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="AWS_CKA_bridgediscovery" />
+                <span>AWS_CKA_bridgediscovery</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="AWS_multivk_dfd" />
+                <span>AWS_multivk_dfd</span>
+              </label>
+            </div>
+          </div>
+          <div class="drawer-filter shidoka-multiselect" data-multiselect="registration" aria-label="Registration filter">
+            <span class="drawer-filter-label">Registration</span>
+            <button type="button" class="shidoka-multiselect__trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="shidoka-multiselect__value">All</span>
+              <span class="shidoka-multiselect__caret">▾</span>
+            </button>
+            <div class="shidoka-multiselect__menu" role="listbox" aria-multiselectable="true" hidden>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" data-shidoka-all checked />
+                <span>All</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="aws-asset-bridge_inventory_autoregistration" />
+                <span>aws-asset-bridge_inventory_autoregistration</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="aws-asset-ccm-kubernetes" />
+                <span>aws-asset-ccm-kubernetes</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="aws-asset-autoregistration" />
+                <span>aws-asset-autoregistration</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="azure-asset-bridge_inventory_autoregistration" />
+                <span>azure-asset-bridge_inventory_autoregistration</span>
+              </label>
+              <label class="shidoka-multiselect__option">
+                <input type="checkbox" value="gcp-asset-bridge_inventory_autoregistration" />
+                <span>gcp-asset-bridge_inventory_autoregistration</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="drawer-summary"><div class="drawer-context"><p id="drawer-provider-label" class="drawer-provider-label"><span>Provider:</span> AWS</p><p id="drawer-connection-label" class="drawer-connection is-hidden"><span>Connection:</span> Petstore_CCM_AWS</p></div><p class="selected-count">0 row(s) selected</p></div>
+        <div class="drawer-table" role="table" aria-label="Selected resources">
+          <div class="drawer-table-row drawer-table-header" role="row"><span></span><span><input class="drawer-select-all" type="checkbox" aria-label="Select all resource categories"></span><span>Resource Category</span><span>On-Demand Discovery supported?</span><span>No. of Resources</span></div>
+          <div class="drawer-table-row" role="row"><span>1</span><span><input class="drawer-row-checkbox" type="checkbox" aria-label="Select VM" checked></span><span>VM</span><span>Yes</span><span>6</span></div>
+          <div class="drawer-table-row" role="row"><span>2</span><span><input class="drawer-row-checkbox" type="checkbox" aria-label="Firewall. This resource category does not support on-demand discovery and therefore cannot be selected." title="This resource category does not support on-demand discovery and therefore cannot be selected." disabled></span><span>Firewall</span><span>No</span><span>1</span></div>
+        </div>
+      </div>
+      <div class="drawer-actions"><button class="drawer-refresh" type="button">Run Discovery</button><button class="drawer-cancel" type="button">Cancel</button></div>
+    </aside>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="app.js?v=20260901"></script>
+  </body>
+</html>
